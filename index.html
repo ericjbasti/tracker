@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="style.css" />
+	<style type="text/css">
+		#index{
+			position: fixed;
+			top:2em;
+			left:2em;
+			background: white;
+			z-index: 50;
+		}
+		#content{
+			width: 300px;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="tracker.js"></script>
+	<script>
+		$(function(){
+			$('section').tracker({
+				buffer:0,
+				index:'#index',
+				titleTag:'h3',
+				passed:function(a,d){
+					$(a).addClass('passed');
+					$(a).removeClass('inView');
+				},
+				inView:function(a,d){
+					$(a).removeClass('passed');
+					$(a).addClass('inView');
+					$(a).removeClass('outside');
+				},
+				outside:function(a,d){
+					$(a).addClass('outside');
+				}
+			});
+			$('h1').tracker({
+				update:function(a,top){
+				var color=parseInt(top*255);
+				$(a).css({'margin-left':color});
+			}});
+		});
+	</script>
+</head>
+<body>
+	<ul id="index"></ul>
+	<div id="content">
+	
+	<section id="tracking">
+		<h3>Are you interested in tracking the user</h3>
+		<p>Lorem ipsum dolor sit amet, nunc a lectus eu ultricies, vitae duis, amet enim, aliquam duis libero eu mattis. Platea integer venenatis, duis id vestibulum nibh nullam pretium. Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+	<section id="find">
+		<h3>Maybe you want to help them find stuff</h3>
+		<p>Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+	<section id="help">
+		<h3>Help them</h3>
+		<p>Donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+	<section id="tracking_more">
+		<h3>Are you interested in tracking the user</h3>
+		<p>Lorem ipsum dolor sit amet, nunc a lectus eu ultricies, vitae duis, amet enim, aliquam duis libero eu mattis. Platea integer venenatis, duis id vestibulum nibh nullam pretium. Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+	<section id="find_more">
+		<h3>Maybe you want to help them find stuff</h3>
+		<p>Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+	<section id="help_more">
+		<h3>Help them</h3>
+		<p>Donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
+	</section>
+</div>
+	</body>
+</html>
