@@ -6,6 +6,7 @@
 			passed:function(){},
 			inView:function(){},
 			outside:function(){},
+			firstView:function(){},
 			update:null,
 			buffer:.2, //20%
 			index:null,
@@ -21,22 +22,26 @@
 			if (d.y < 0 && d.height + d.y > 0) return {hit:true,delta:d};
 			return {hit:false,delta:d};
 		}
-		
+		var target = null; // save us on garbage collection
+
 		var track = function(){
 			var top=$(window).scrollTop();
 		    var view = $(window).height();
 		    
 		   	for (var i=0;i!=tracker.length;i++){
-		   		var temp= $(tracker[i]).offset().top+($(tracker[i]).height())-view+(view*(options.buffer));
-		   		var test=(hitTest({top:top,height:view},{top:$(tracker[i]).offset().top,height:$(tracker[i]).height()}));
-		   		var delta = (temp/view);
+		   		target= $(tracker[i].target);
+		   		var temp= target.offset().top;
+		   		var test=(hitTest({top:top,height:view},{top:target.offset().top,height:target.height()}));
+		   		var delta = (temp-top);
 		   		if(test.hit){
-		   			options.inView(tracker[i],delta);
+		   			options.inView(target,delta);
+		   			tracker[i].hits++;
+		   			if(tracker[i].hits===1) options.firstView(target,delta);
 		   		}else{
 		   			if(delta>0){
-		   				options.outside(tracker[i],delta);
+		   				options.outside(target,delta);
 		   			}else{
-		   				options.passed(tracker[i],delta);
+		   				options.passed(target,delta);
 		   			}
 		   		}
 		   	}
@@ -47,7 +52,26 @@
 		});
 
 		return this.each(function(){
-			tracker.push(this);
+			tracker.push({target:this,hits:0});
+			track();
 		});
 	};
+
+
+	$.fn.trackerLoad = function(){
+		$(this).tracker({firstView:function(a){
+			var img = $(a);
+			var cur = a.attr('src');
+			var full = a.attr('data-original');
+			if(cur!=full){
+				img.attr({'src':full});
+				a.load(function(){
+					$(this).addClass('loaded');
+				})
+			}
+		}})
+	}
+
 })(jQuery);
+
+

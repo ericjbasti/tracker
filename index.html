@@ -19,6 +19,15 @@
 		#content{
 			width: 300px;
 		}
+		.lazy{
+			width: 100%;
+			max-width: 640px;
+			opacity: 0;
+			-webkit-transition: all 1s;
+		}
+		.lazy.loaded{
+			opacity: 1;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="tracker.js"></script>
@@ -46,13 +55,14 @@
 				var color=parseInt(top*255);
 				$(a).css({'margin-left':color});
 			}});
+			$('.lazy').trackerLoad();
 		});
 	</script>
 </head>
 <body>
 	<ul id="index"></ul>
 	<div id="content">
-	
+	<img class="lazy" src="images/flower2_low.jpg" data-original="images/flower2.jpg"/>
 	<section id="tracking">
 		<h3>Are you interested in tracking the user</h3>
 		<p>Lorem ipsum dolor sit amet, nunc a lectus eu ultricies, vitae duis, amet enim, aliquam duis libero eu mattis. Platea integer venenatis, duis id vestibulum nibh nullam pretium. Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
@@ -61,6 +71,8 @@
 		<h3>Maybe you want to help them find stuff</h3>
 		<p>Aliquet aliquam donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
 	</section>
+	<img class="lazy" src="images/flower1_low.jpg" data-original="images/flower1.jpg"/>
+	<img class="lazy" src="images/flower2_low.jpg" data-original="images/flower2.jpg"/>
 	<section id="help">
 		<h3>Help them</h3>
 		<p>Donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
@@ -77,6 +89,13 @@
 		<h3>Help them</h3>
 		<p>Donec accumsan nonummy eget, elementum mattis leo quis, nulla vel vestibulum potenti ipsum massa. Nulla porttitor nulla leo, ultricies quis magna, morbi nullam inceptos urna lobortis. Nulla faucibus dis mollis eget vel massa. Porta a, eget eros porta aenean, quam praesent nunc unde, sem enim, class urna class et etiam adipiscing elementum. Elit magna praesent, ultricies non, curabitur dolor. Ut diam. Sem tellus consequat facilisis suspendisse rhoncus eu, fringilla sunt sapien cras.</p>
 	</section>
+
+	<img class="lazy" src="images/flower1_low.jpg" data-original="images/flower1.jpg"/>
+	<img class="lazy" src="images/flower2_low.jpg" data-original="images/flower2.jpg"/>
+	<img class="lazy" src="images/flower1_low.jpg" data-original="images/flower1.jpg"/>
+	<img class="lazy" src="images/flower2_low.jpg" data-original="images/flower2.jpg"/>
+	<img class="lazy" src="images/flower1_low.jpg" data-original="images/flower1.jpg"/>
+	<img class="lazy" src="images/flower2_low.jpg" data-original="images/flower2.jpg"/>
 </div>
 	</body>
 </html>

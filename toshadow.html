@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+	<canvas id="magic"></canvas>
+
+	<script>
+	var canvas = magic;
+	canvas.ctx = canvas.getContext('2d');
+
+	var temp = new Image();
+
+	temp.onload = function(){
+		canvas.width=this.width;
+		canvas.height=this.height;
+		canvas.ctx.drawImage(this,0,0);
+		var buffer=canvas.ctx.getImageData(0,0,this.width,this.height);
+		effect(buffer);
+	}
+	temp.src='assets/images/butterfly.png';
+
+	var shadowString = '%x%em %y%em 0em rgba(%r%,%g%,%b%,%a%),';
+
+	var fill = function(who,where){
+		var temp= who;
+		for (var j in where){
+			identifier = new RegExp("\\%" + i + "."+j+"\\%", "g");
+			temp=temp.replace(identifier,where[i][j]);
+		}
+		return temp;
+	}
+
+	var effect = function(pixels) {
+	  var d = pixels.data;
+	  var width=(canvas.width*4);
+	  console.log(width)
+	  for (var i=0; i<d.length; i+=4) {
+	  	var te = {x:(i / 4) % width, y: Math.floor((i / 4) / width), r:d[i] ,g:d[i+1] ,b:d[i+2], a:d[i+3] }
+	  	console.log(te);
+	  }
+	  return pixels;
+	};
+
+	</script>
+</body>
+</html>
