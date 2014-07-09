@@ -34,7 +34,7 @@
 	<script>
 		$(function(){
 			$('section').tracker({
-				buffer:0,
+				buffer:100,
 				index:'#index',
 				titleTag:'h3',
 				passed:function(a,d){
@@ -55,7 +55,7 @@
 				var color=parseInt(top*255);
 				$(a).css({'margin-left':color});
 			}});
-			$('.lazy').trackerLoad();
+			$('.lazy').trackerLoad({buffer:50});
 		});
 	</script>
 </head>

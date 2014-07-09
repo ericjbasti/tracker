@@ -7,10 +7,10 @@
 			inView:function(){},
 			outside:function(){},
 			firstView:function(){},
-			update:null,
-			buffer:.2, //20%
-			index:null,
-			titleTag:'h2'
+			update: null,
+			buffer: 50, //20%
+			index: null,
+			titleTag: 'h2'
 		};
 		
 		options = $.extend(defaults, options);
@@ -27,11 +27,13 @@
 		var track = function(){
 			var top=$(window).scrollTop();
 		    var view = $(window).height();
-		    
+
+		    var buffer= options.buffer;
+		    console.log(top,view)
 		   	for (var i=0;i!=tracker.length;i++){
 		   		target= $(tracker[i].target);
 		   		var temp= target.offset().top;
-		   		var test=(hitTest({top:top,height:view},{top:target.offset().top,height:target.height()}));
+		   		var test=(hitTest({top:top,height:view},{top:target.offset().top-buffer,height:target.height()+buffer}));
 		   		var delta = (temp-top);
 		   		if(test.hit){
 		   			options.inView(target,delta);
@@ -58,18 +60,24 @@
 	};
 
 
-	$.fn.trackerLoad = function(){
-		$(this).tracker({firstView:function(a){
-			var img = $(a);
-			var cur = a.attr('src');
-			var full = a.attr('data-original');
-			if(cur!=full){
-				img.attr({'src':full});
-				a.load(function(){
-					$(this).addClass('loaded');
-				})
-			}
-		}})
+	$.fn.trackerLoad = function(options){
+		var defaults = {
+			firstView:function(a){
+				var img = $(a);
+				var cur = a.attr('src');
+				var full = a.attr('data-original');
+				if(cur!=full){
+					img.attr({'src':full});
+					a.load(function(){
+						$(this).addClass('loaded');
+					})
+				}
+			},
+			buffer: 50
+		};
+		options = $.extend(defaults, options);
+
+		$(this).tracker(options);
 	}
 
 })(jQuery);
