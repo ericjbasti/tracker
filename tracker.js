@@ -10,7 +10,7 @@
 			update: null,
 			buffer: 50, //20%
 			index: null,
-			titleTag: 'h2'
+			mobileThreshold: 580,
 		};
 		
 		options = $.extend(defaults, options);
